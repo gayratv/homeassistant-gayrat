@@ -1,0 +1,39 @@
+'1645200675069':
+  sequence:
+  - condition: sun
+    after: sunrise
+  - type: turn_off
+    device_id: ef67c94bbf4c38b923dcb91e2808e45d
+    entity_id: switch.fito_light_winter_garden
+    domain: switch
+  mode: restart
+  alias: Выключить свет с рассветом
+  icon: mdi:alarm-light-outline
+'1645200897407':
+  sequence:
+  - condition: sun
+    after: sunset
+  - type: turn_on
+    device_id: ef67c94bbf4c38b923dcb91e2808e45d
+    entity_id: switch.fito_light_winter_garden
+    domain: switch
+  mode: restart
+  alias: Включить свет на закате
+  icon: mdi:audio-video
+'1':
+  sequence:
+  - wait_for_trigger:
+    - platform: device
+      domain: mqtt
+      device_id: 29e91b87b42971f75fa1faaf3af68abf
+      type: action
+      subtype: single
+      discovery_id: 0x00158d00079b9495 action_single
+    continue_on_timeout: false
+  - type: toggle
+    device_id: 792743b254af7f6173436972f023b74c
+    entity_id: switch.rozet1
+    domain: switch
+  mode: restart
+  alias: кнопка->розетка1
+  icon: mdi:caravan

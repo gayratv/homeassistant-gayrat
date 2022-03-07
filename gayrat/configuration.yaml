@@ -1,0 +1,19 @@
+homeassistant:
+  name: Гайрат Smart Home
+  latitude: !secret latitude_coord
+  longitude: !secret longitude_coord
+  elevation: 0
+  unit_system: metric
+  time_zone: Europe/Moscow
+  
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+packages: !include_dir_merge_named packages
+
+# My Home Assistant
+my:

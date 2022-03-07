@@ -1,0 +1,17 @@
+- id: '1645440345429'
+  alias: motion4
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion1_occupancy
+#    attribute: occupancy   
+    to: 'on'
+  condition: []
+  action:
+#  - type: turn_on
+#    device_id: 792743b254af7f6173436972f023b74c
+#    entity_id: switch.rozet1
+#    domain: switch   
+  - service:  switch.turn_on
+    entity_id: switch.rozet1
+  

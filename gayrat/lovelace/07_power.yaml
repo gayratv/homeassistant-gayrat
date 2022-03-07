@@ -1,0 +1,1497 @@
+##################   Power counter
+title: Расход электроэнергии 
+icon: mdi:counter
+cards:
+
+      - type: vertical-stack
+        cards:
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.power_rate
+            name: Тариф -
+            icon: mdi:cash
+          - entity: input_text.power_rate
+            name: Ручной ввод
+          - entity: script.power_rate
+            name: Сохранить тариф
+            icon: mdi:cash
+
+        - type: markdown
+          style: |
+              ha-card {
+                color: #17fe00;
+                font-weight: bold;
+                # font-size: 16px;
+              } 
+          content: >
+               ## Потребление по квартире
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.total_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.total_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.total_consumption_today
+                    name: Сегодня
+              - entity: sensor.total_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.total_consumption_month
+                    name: Текущий
+              - entity: sensor.total_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.total_money_month
+                    name: Текущий
+
+        - type: markdown
+          content: >
+                ## Стиральная машина
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.laundry_washmachine_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.laundry_washmachine_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.laundry_washmachine_consumption_today
+                    name: Сегодня
+              - entity: sensor.laundry_washmachine_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.laundry_washmachine_consumption_month
+                    name: Текущий
+              - entity: sensor.laundry_washmachine_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.laundry_washmachine_money_month
+                    name: Текущий
+
+        - type: markdown
+          content: >
+             ## Бойлер
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:           
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.bathroom_bolier_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.bathroom_bolier_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.bathroom_bolier_consumption_today
+                    name: Сегодня
+              - entity: sensor.bathroom_bolier_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.bathroom_bolier_consumption_month
+                    name: Текущий
+              - entity: sensor.bathroom_bolier_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.bathroom_bolier_money_month
+                    name: Текущий
+
+
+      - type: vertical-stack
+        cards:
+        
+        - type: markdown
+          style: |
+              ha-card {
+                color: #17fe00;
+                font-weight: bold;
+                # font-size: 16px;
+              } 
+          content: >
+               ## Потребление по кухне
+               
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.kitchen_total_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.kitchen_total_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_total_consumption_today
+                    name: Сегодня
+              - entity: sensor.kitchen_total_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_total_consumption_month
+                    name: Текущий
+              - entity: sensor.kitchen_total_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.kitchen_total_money_month
+                    name: Текущий
+
+        - type: markdown
+          content: >
+             ## Гриль
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:           
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.kitchen_grill_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.kitchen_grill_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_grill_consumption_today
+                    name: Сегодня
+              - entity: sensor.kitchen_grill_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_grill_consumption_month
+                    name: Текущий
+              - entity: sensor.kitchen_grill_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.kitchen_grill_money_month
+                    name: Текущий
+                    
+        - type: markdown
+          content: >
+             ## Тостер, блендер
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:           
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.kitchen_toster_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.kitchen_toster_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_toster_consumption_today
+                    name: Сегодня
+              - entity: sensor.kitchen_toster_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_toster_consumption_month
+                    name: Текущий
+              - entity: sensor.kitchen_toster_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.kitchen_toster_money_month
+                    name: Текущий
+
+        - type: markdown
+          content: >
+             ## Аэрогриль
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:           
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.kitchen_airgrill_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.kitchen_airgrill_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_airgrill_consumption_today
+                    name: Сегодня
+              - entity: sensor.kitchen_airgrill_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_airgrill_consumption_month
+                    name: Текущий
+              - entity: sensor.kitchen_airgrill_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.kitchen_airgrill_money_month
+                    name: Текущий
+
+        - type: markdown
+          content: >
+              ## Кухня телевизор
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.kitchen_tv_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.kitchen_tv_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_tv_consumption_today
+                    name: Сегодня
+              - entity: sensor.kitchen_tv_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_tv_consumption_month
+                    name: Текущий
+              - entity: sensor.kitchen_tv_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.kitchen_tv_money_month
+                    name: Текущий
+
+
+        - type: markdown
+          content: >
+              ## Холодильник
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.kitchen_fridge_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.kitchen_fridge_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_fridge_consumption_today
+                    name: Сегодня
+              - entity: sensor.kitchen_fridge_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_fridge_consumption_month
+                    name: Текущий
+              - entity: sensor.kitchen_fridge_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.kitchen_fridge_money_month
+                    name: Текущий
+
+        - type: markdown
+          content: >
+              ## LED лента
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.kitchen_led_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.kitchen_led_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_led_consumption_today
+                    name: Сегодня
+              - entity: sensor.kitchen_led_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.kitchen_led_consumption_month
+                    name: Текущий
+              - entity: sensor.kitchen_led_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.kitchen_led_money_month
+                    name: Текущий
+
+      - type: vertical-stack
+        cards:
+        
+        - type: markdown
+          style: |
+              ha-card {
+                color: #17fe00;
+                font-weight: bold;
+                # font-size: 16px;
+              } 
+          content: >
+               ## Потребление по гостиной
+               
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.lr_total_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.lr_total_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.lr_total_consumption_today
+                    name: Сегодня
+              - entity: sensor.lr_total_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.lr_total_consumption_month
+                    name: Текущий
+              - entity: sensor.lr_total_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.lr_total_money_month
+                    name: Текущий
+
+        - type: markdown
+          content: >
+              ## Гостиная телевизор 
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:           
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.lr_tv_instantpower
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: entities
+             show_header_toggle: false
+             entities:
+              - entity: sensor.lr_tv_consumption_yesterday
+                type: custom:multiple-entity-row
+                name: День -
+                state_header: Вчера
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.lr_tv_consumption_today
+                    name: Сегодня
+              - entity: sensor.lr_tv_consumption_lastmonth
+                type: custom:multiple-entity-row
+                name: Месяц -
+                state_header: Прошедший
+                icon: mdi:counter
+                entities:
+                  - entity: sensor.lr_tv_consumption_month
+                    name: Текущий
+              - entity: sensor.lr_tv_money_lastmonth
+                type: custom:multiple-entity-row
+                name: Расход -
+                state_header: Прошедший
+                icon: mdi:cash
+                entities:
+                  - entity: sensor.lr_tv_money_month
+                    name: Текущий
+
+        - type: markdown
+          content: >
+              ## Xiaomi wi-fi + 2 USB
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.wifi_2usb_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.wifi_2usb_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.wifi_2usb_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.wifi_2usb_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.wifi_2usb_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.wifi_2usb_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.wifi_2usb_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+
+        - type: markdown
+          content: >
+              ## Гостиная, батарея 2
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.0x00158d000114a1e1_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72  
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d000114a1e1_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d000114a1e1_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d000114a1e1_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d000114a1e1_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d000114a1e1_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d000114a1e1_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+
+        - type: markdown
+          content: >
+                 ## Гостиная, удлинитель, стол
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.0x04cf8cdf3c764e0a_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.04cf8cdf3c764e0a_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.04cf8cdf3c764e0a_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.04cf8cdf3c764e0a_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.04cf8cdf3c764e0a_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.04cf8cdf3c764e0a_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.04cf8cdf3c764e0a_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+
+
+        - type: markdown
+          content: >
+              ## Гостиная, удлинитель, стойка ТВ
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.wifi_6port_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72  
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.wifi_6port_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.wifi_6port_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.wifi_6port_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.wifi_6port_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.wifi_6port_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.wifi_6port_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+
+
+        - type: markdown
+          content: >
+              ## Гостиная, удлинитель комод
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.wifi_3usb_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.wifi_3usb_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.wifi_3usb_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.wifi_3usb_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.wifi_3usb_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.wifi_3usb_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.wifi_3usb_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+             ## Детская Д, увлажнение и отопление
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.0x00158d0001a2ccab_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+                
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d0001a2ccab_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d0001a2ccab_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d0001a2ccab_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d0001a2ccab_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d0001a2ccab_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d0001a2ccab_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+ 
+        - type: markdown
+          content: >
+              ## Настольная лампа Д
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.0x00158d00030a6e78_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d00030a6e78_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d00030a6e78_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d00030a6e78_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d00030a6e78_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d00030a6e78_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d00030a6e78_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+                 
+        - type: markdown
+          content: >
+              ## Детская Д, ноутбук
+                 
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+               - entity: sensor.0x00158d000153dd8e_power
+                 name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72  
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d000153dd8e_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d000153dd8e_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d000153dd8e_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d000153dd8e_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d000153dd8e_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d000153dd8e_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+
+        - type: markdown
+          content: >
+             ## Детская А, отопление и рабочий стол
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.0x00158d0002d7bb2b_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d0002d7bb2b_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d0002d7bb2b_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d0002d7bb2b_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d0002d7bb2b_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d0002d7bb2b_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d0002d7bb2b_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash
+
+
+        - type: markdown
+          content: >
+             ## Увлажнитель А
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+
+           - type: custom:mini-graph-card
+             entities:
+              - entity: sensor.0x00158d00010ec4b8_power
+                name: Потребление
+             color_thresholds:
+                - value: 100
+                  color: "#E6E6FA"
+                - value: 300
+                  color: "#D8BFD8"
+                - value: 500
+                  color: "#DA70D6"
+                - value: 1000
+                  color: "#8A2BE2"
+                - value: 2000
+                  color: "#8B008B"
+                - value: 3000
+                  color: "#483D8B"
+                - value: 5000
+                  color: "#4B0082"
+             animate: true
+             line_width: 2
+             hour24: true
+             points_per_hour: 1
+             group_by: hour
+             hours_to_show: 72 
+
+           - type: horizontal-stack
+             cards:
+             - type: markdown
+               content: >
+                  **Текущий** 
+             - type: markdown
+               content: >
+                  **Прошедший** 
+           - type: horizontal-stack
+             cards:
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d00010ec4b8_power_today
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d00010ec4b8_power_month
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d00010ec4b8_money_month
+                 name: Месяц
+                 icon: mdi:cash
+
+             - type: entities
+               show_header_toggle: false
+               entities:
+               - entity: sensor.00158d00010ec4b8_power_yesterday
+                 name: День
+                 icon: mdi:counter
+               - entity: sensor.00158d00010ec4b8_power_lastmonth
+                 name: Месяц
+                 icon: mdi:counter
+               - entity: sensor.00158d00010ec4b8_money_lastmonth
+                 name: Месяц
+                 icon: mdi:cash

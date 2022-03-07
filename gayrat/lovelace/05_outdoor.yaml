@@ -1,0 +1,187 @@
+##################   Погода
+title: Погода
+icon: mdi:weather-hazy
+cards:
+
+############################ Колонка 1 ############################
+    - type: vertical-stack
+      cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Воздух, погода, радиация**
+
+        - type: custom:air-visual-card
+          air_pollution_level: sensor.u_s_air_pollution_level
+          air_quality_index: sensor.u_s_air_quality_index
+          main_pollutant: sensor.u_s_main_pollutant
+          city: 'Киев'
+
+        - type: custom:weather-card
+          entity: weather.openweathermap
+          name: Прогноз
+          current: true
+          details: false
+          forecast: true
+          hourly_forecast: true
+          number_of_forecasts: 6
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:          
+            - type: custom:mini-graph-card
+              icon: mdi:radioactive
+              entities:
+                - entity: sensor.0x00124b001d3bdce0_radiation_dose_per_hour
+                  name: Радиация мкР/ч
+              color_thresholds:
+                - value: 20
+                  color: "#00FFFF"
+                - value: 30
+                  color: "#008080"
+                - value: 50
+                  color: "#FFFF00"
+                - value: 9999
+                  color: "#FF0000"
+              animate: true
+              line_width: 2
+              hour24: true
+              points_per_hour: 1
+              group_by: hour
+              hours_to_show: 72
+          
+            - type: entities
+              show_header_toggle: false
+              entities:
+              - entity: sensor.radiation_max
+                name: Максимальный фон сегодня -
+                icon: mdi:radioactive 
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Внешние камеры**
+
+        - type: picture-entity
+          entity: camera.hikvision5
+          camera_view: live 
+          show_state: false
+          show_name: false
+          
+        - type: picture-entity
+          entity: camera.hikvision1
+          camera_view: live 
+          show_state: false
+          show_name: false
+          
+
+    - type: vertical-stack
+      cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Датчики**
+
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.0x00158d0001a4b9da_temperature
+             name: Температура
+          color_thresholds:
+            - value: -20
+              color: "#191970"
+            - value: 0
+              color: "#0000FF"
+            - value: 10
+              color: "#ADD8E6"
+            - value: 20
+              color: "#E0FFFF"
+            - value: 25
+              color: "#FFFF00"
+            - value: 50
+              color: "#FFD700"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+         
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.0x00158d0001a4b9da_humidity
+             name: Влажность
+          color_thresholds:
+            - value: 20
+              color: "#FFFF00"
+            - value: 30
+              color: "#FAFAD2"
+            - value: 40
+              color: "#E0FFFF"
+            - value: 50
+              color: "#7FFFD4"
+            - value: 60
+              color: "#00CED1"
+            - value: 80
+              color: "#0000FF"
+            - value: 100
+              color: "#000080"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.pressure_mmhg_158d0001a4b9da
+             name: Давление
+          color_thresholds:
+              - value: 735
+                color: "#FFDEAD"
+              - value: 765
+                color: "#228B22"
+              - value: 850
+                color: "#A52A2A"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+          
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.0x00158d0001a4b9da_battery
+             name: Уровень заряда
+          color_thresholds:
+            - value: 25
+              color: "#DC143C"
+            - value: 50
+              color: "#FF8C00"
+            - value: 75
+              color: "#FFFF00"
+            - value: 90
+              color: "#98FB98"
+            - value: 110
+              color: "#7FFF00"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72

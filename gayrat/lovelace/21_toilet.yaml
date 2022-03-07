@@ -1,0 +1,229 @@
+##################  Toilet
+title: Санузлы, прачечная
+icon: mdi:toilet
+cards:
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }   
+          content: >
+              **Панель управления**
+
+        - type: glance
+          show_state: false
+          entities:
+           - entity: binary_sensor.0x00158d0001a24e71_occupancy
+             name: Движение
+           - entity: binary_sensor.0xec1bbdfffe8f1e42_water_leak
+             name: Датчик протечки
+           - entity: binary_sensor.tt_light_timer
+             name: Автосвет
+
+        - type: custom:stack-in-card
+          mode: horizontal
+          cards:  
+          
+            - type: light
+              entity: light.yeelight_02_ceiling
+              name: Люстра
+
+            - type: light
+              entity: light.tt_mirror
+              name: Зеркало
+              icon: mdi:mirror
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+           - entity: sensor.mqtt_binary_sensor_158d0001a24e71
+             name: Последнее движение в -
+             icon: mdi:run-fast
+
+        - type: custom:stack-in-card
+          mode: horizontal
+          cards:        
+            - type: button
+              entity: switch.0x00158d00014dceb3_switch_right
+              name: Вентилятор
+            - type: button
+              entity: switch.0x00158d00014dceb3_switch_left
+              name: Питание люстра
+              
+        - type: entity-filter
+          show_header_toggle: false
+          entities:
+          - entity: timer.toilet
+          - entity: timer.toilet_v
+          state_filter:
+            - "active"
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }   
+          content: >
+              **Климат, освещенность**
+              
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.0xec1bbdfffe6f3394_temperature
+             name: Температура
+          color_thresholds:
+            - value: 10
+              color: "#191970"
+            - value: 15
+              color: "#0000FF"
+            - value: 20
+              color: "#ADD8E6"
+            - value: 25
+              color: "#E0FFFF"
+            - value: 30
+              color: "#FFFF00"
+            - value: 50
+              color: "#FFD700"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+             
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.0xec1bbdfffe6f3394_humidity
+             name: Влажность
+          color_thresholds:
+            - value: 20
+              color: "#FFFF00"
+            - value: 30
+              color: "#FAFAD2"
+            - value: 40
+              color: "#E0FFFF"
+            - value: 50
+              color: "#7FFFD4"
+            - value: 60
+              color: "#00CED1"
+            - value: 80
+              color: "#0000FF"
+            - value: 100
+              color: "#000080"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+          
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.0x00158d0001a24e71_illuminance
+             name: Освещенность
+          color_thresholds:
+              - value: 100
+                color: "#000000"
+              - value: 300
+                color: "#2F4F4F"
+              - value: 500
+                color: "#708090"
+              - value: 800
+                color: "#A9A9A9"
+              - value: 1000
+                color: "#D3D3D3"
+              - value: 2000
+                color: "#FFFFFF"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+          
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }   
+          content: >
+              **Zigbee Устройства**
+
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: switch.0x00158d00014dceb3_switch_left
+            type: custom:multiple-entity-row
+            toggle: true
+            state_color: true
+            name: Выключатель
+            secondary_info: last-changed
+            state_header: Питание люстры
+            entities:
+              - entity: sensor.0x00158d00014dceb3_linkquality
+                name: Сигнал
+              - entity: switch.0x00158d00014dceb3_switch_right
+                name: Вентилятор
+                toggle: true
+
+          - type: divider
+          - entity: switch.0xec1bbdfffea37571_switch
+            type: custom:multiple-entity-row
+            icon: mdi:mirror
+            toggle: true
+            state_color: true
+            name: Реле Lonsonho
+            secondary_info: last-changed
+            state_header: Питание подсветки
+            entities:
+              - entity: sensor.0xec1bbdfffea37571_linkquality
+                name: Сигнал
+                
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.0x00158d0001bbeba6_battery
+            type: custom:multiple-entity-row
+            icon: mdi:water
+            name: Датчик протечки
+            state_header: Заряд
+            entities:
+              - entity: sensor.0x00158d0001bbeba6_linkquality
+                name: Сигнал
+          - type: divider
+          - entity: sensor.0x00158d0001a24e71_battery
+            type: custom:multiple-entity-row
+            icon: mdi:run
+            name: Сенсор движения
+            state_header: Заряд
+            entities:
+              - entity: sensor.0x00158d0001a24e71_linkquality
+                name: Сигнал
+          - type: divider
+          - entity: sensor.0xec1bbdfffe6f3394_battery
+            type: custom:multiple-entity-row
+            icon: mdi:coolant-temperature
+            name: Сенсор климата
+            state_header: Заряд
+            entities:
+              - entity: sensor.0xec1bbdfffe6f3394_linkquality
+                name: Сигнал
+          - type: divider
+          - entity: sensor.0x00158d000128cd1a_battery
+            type: custom:multiple-entity-row
+            icon: mdi:gesture-double-tap
+            name: Выключатель на стене
+            state_header: Заряд
+            entities:
+              - entity: sensor.0x00158d000128cd1a_linkquality
+                name: Сигнал

@@ -1,0 +1,12 @@
+- id: Кнопка ->розетка1
+  alias: knopka
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: sensor.round_btn_xiaomi_click
+#      to: "double"
+      to: "single"
+  action:
+    - service: switch.toggle
+      entity_id: switch.rozet1
+

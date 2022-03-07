@@ -1,0 +1,104 @@
+##################   MAP
+title: Местонахождение
+icon: mdi:map-search
+cards:
+
+
+    - type: vertical-stack
+      cards:
+
+        - type: markdown
+          content: >
+              **Активность в доме**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: binary_sensor.occupancy
+              secondary_info: last-changed
+            - type: divider
+            - entity: binary_sensor.motion_in_home
+              secondary_info: last-changed
+            - entity: binary_sensor.working_tv
+              secondary_info: last-changed
+            - entity: binary_sensor.working_light
+              secondary_info: last-changed
+            - entity: binary_sensor.bluetooth_in_home
+              secondary_info: last-changed
+            - entity: binary_sensor.smartphone_in_home
+              secondary_info: last-changed
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+              
+            - type: markdown
+              content: >
+                  **Общие режимы**
+
+            - type: entities
+              show_header_toggle: false
+              entities:
+              - entity: switch.holiday_mode
+                name: Режим выходного дня - 
+
+    - type: vertical-stack
+      cards:
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.alex
+            type: custom:multiple-entity-row
+            name: Алексей -
+            state_header: Находится в
+            entities:
+              - entity: sensor.360_alex_battery
+                name: Заряд телефона
+
+        - type: map
+          aspect_ratio: 16:9
+          default_zoom: 15
+          entities:
+            - device_tracker.life360_alex
+            
+    - type: vertical-stack
+      cards:
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.olga
+            type: custom:multiple-entity-row
+            name: Ольга -
+            state_header: Находится в
+            entities:
+              - entity: sensor.360_olga_battery
+                name: Заряд телефона
+
+        - type: map
+          aspect_ratio: 16:9
+          default_zoom: 15
+          entities:
+            - device_tracker.life360_olga
+            
+    - type: vertical-stack
+      cards:
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.dima
+            type: custom:multiple-entity-row
+            name: Дима -
+            state_header: Находится в
+            entities:
+              - entity: sensor.360_dima_battery
+                name: Заряд телефона
+
+        - type: map
+          aspect_ratio: 16:9
+          default_zoom: 15
+          entities:
+            - device_tracker.life360_dima
+

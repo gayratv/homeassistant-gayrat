@@ -1,0 +1,331 @@
+##################   DD
+title: Детская Д
+icon: mdi:human-male-boy
+cards:
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }              
+          content: >
+              **Панель управления**
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+
+          - type: horizontal-stack
+            cards:        
+            - type: light
+              entity: light.philips_07_ceiling
+              name: Люстра 
+            - type: light
+              entity: light.0x00158d000420dbab
+              name: Бра
+
+          - type: conditional
+            conditions:
+              - entity: light.philips_07_ceiling
+                state: "on"
+            card:
+              type: entities
+              show_header_toggle: false
+              entities:
+                - entity: sensor.philips_07_ceiling
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:  
+
+          - type: horizontal-stack
+            cards: 
+
+            - type: button
+              entity: light.xiaomi_07_table
+              name: Лампа
+              
+            - type: button
+              entity: script.07_dd_lightoff
+              name: Свет выкл
+              icon: mdi:close-circle-outline
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                entity_id: script.07_dd_lightoff
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+          - type: markdown
+            content: >
+               **Управление питанием**
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: switch.0x00158d00030a6e78_switch
+                name: Настольная лампа
+                icon: mdi:power-socket-eu
+              - entity: switch.0x00158d000153dd8e_switch
+                name: Ноутбук Acer 15
+                icon: mdi:power-socket-eu
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+          - type: markdown
+            content: >
+               **Useelink удлинитель**
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: switch.0x842e14fffefd9721_switch_l1
+              - entity: switch.0x842e14fffefd9721_switch_l2
+              - entity: switch.0x842e14fffefd9721_switch_l3
+              - entity: switch.0x842e14fffefd9721_switch_l4              
+             
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }      
+          content: >
+              **Мониторинг**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+           - entity: sensor.dd_light_sensor_illuminance
+           - entity: sensor.dd_day_work
+             name: Дневной режим
+           - entity: sensor.mqtt_binary_sensor_158d0001a66222
+             name: Движение
+             icon: mdi:run-fast
+           - entity: binary_sensor.dd_air
+             name: Уведомление             
+             
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+             
+            - type: entities
+              show_header_toggle: false
+              entities:
+               - entity: binary_sensor.notebook_acer_15
+                 name: Acer 15
+                 secondary_info: last-changed
+                 
+            - type: custom:logbook-card
+              entity: binary_sensor.notebook_acer_15
+              max_items: 5
+              title: История включений
+              duration_labels:
+                second:  '${value} секунда'
+                seconds: '${value} секунд'
+                minute:  '${value} минута'
+                minutes: '${value} минут'
+                hour:    '${value} час'
+                hours:   '${value} часов'
+                day:     '${value} день'
+                days:    '${value} дней'
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }      
+          content: >
+              **Устройства**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+           - entity: sensor.0x00158d0001a2ccab_power
+             name: Увлажнитель/отопление
+           - entity: sensor.0x00158d00030a6e78_power
+             name: Лампа
+           - entity: sensor.0x00158d000153dd8e_power
+             name: Ноутбук
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+          - type: markdown
+            content: >
+               **Xiaomi Gateway 3**
+          - type: entities
+            show_header_toggle: false
+            entities:
+            - entity: switch.0x842e14fffefd9721_switch_l5 
+            - entity: remote.0x680ae2fffe83f67a_pair
+            - entity: switch.0x680ae2fffe83f67a_firmware_lock
+
+
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards: 
+          - type: markdown
+            content: >
+               **Детская Д, ESP 32 BLE шлюз**
+          - type: entities
+            show_header_toggle: false
+            entities:
+            - entity: sensor.dd_esp32_uptime_custom
+            - entity: sensor.dd_esp32_wi_fi
+              name: Сигнал wi-fi
+            - entity: sensor.dd_esp32_firmware_version
+              name: Прошивка
+            - entity: switch.dd_esp32_restart
+              name: Перезагрузка
+              icon: mdi:reload
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }   
+          content: >
+              **Zigbee Устройства**
+
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: light.0x00158d000420dbab
+            type: custom:multiple-entity-row
+            toggle: true
+            state_color: true
+            name: Лампочка
+            secondary_info: last-changed
+            state_header: Питание лампы
+            entities:
+              - entity: sensor.0x00158d000420dbab_linkquality
+                name: Сигнал
+          - type: divider
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }      
+          content: >
+              **Сенсоры**
+
+        - type: glance
+          show_state: false
+          entities:
+              - entity: binary_sensor.0x00158d0001a66222_occupancy
+                name: Движение
+              - entity: binary_sensor.0x00158d0001193697_contact
+                name: Окно
+              - entity: binary_sensor.0x00158d00015843d4_contact
+                name: Балкон
+
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.dd_light_sensor_illuminance
+             name: Освещенность
+          color_thresholds:
+              - value: 100
+                color: "#000000"
+              - value: 1000
+                color: "#2F4F4F"
+              - value: 5000
+                color: "#708090"
+              - value: 10000
+                color: "#A9A9A9"
+              - value: 20000
+                color: "#D3D3D3"
+              - value: 82000
+                color: "#FFFFFF"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.07_mean_temperature
+             name: Температура
+          color_thresholds:
+            - value: 10
+              color: "#191970"
+            - value: 15
+              color: "#0000FF"
+            - value: 20
+              color: "#ADD8E6"
+            - value: 25
+              color: "#E0FFFF"
+            - value: 30
+              color: "#FFFF00"
+            - value: 50
+              color: "#FFD700"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+         
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.07_mean_humidity
+             name: Влажность
+          color_thresholds:
+            - value: 20
+              color: "#FFFF00"
+            - value: 30
+              color: "#FAFAD2"
+            - value: 40
+              color: "#E0FFFF"
+            - value: 50
+              color: "#7FFFD4"
+            - value: 60
+              color: "#00CED1"
+            - value: 80
+              color: "#0000FF"
+            - value: 100
+              color: "#000080"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+
+        - type: custom:mini-graph-card
+          entities:
+            - entity: sensor.0x00124b001ed165de_co2
+              name: СО2 
+          color_thresholds:
+            - value: 1000
+              color: "#00FFFF"
+            - value: 2000
+              color: "#00FF00"
+            - value: 3000
+              color: "#FFFF00"
+            - value: 9999
+              color: "#FF0000"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72  

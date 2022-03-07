@@ -1,0 +1,57 @@
+{
+    "0xa4c138a1557cca0d": {
+        "state": "OFF"
+    },
+    "0xa4c1380ddbcc1601": {
+        "temperature": 20.85,
+        "humidity": 27.1
+    },
+    "0x8cf681fffee911ee": {
+        "linkquality": 47
+    },
+    "0x00158d00079b9495": {
+        "voltage": 3032,
+        "battery": 100
+    },
+    "0xa4c138ebb9cda0a7": {
+        "occupancy": false,
+        "tamper": false,
+        "battery_low": false
+    },
+    "0xa4c138adae0f161b": {
+        "state": "OFF",
+        "power_on_behavior": "previous",
+        "switch_type": "state"
+    },
+    "0x00158d0007ed3750": {
+        "occupancy": true,
+        "illuminance": 132,
+        "illuminance_lux": 132,
+        "voltage": 3095,
+        "battery": 100,
+        "temperature": 26
+    },
+    "0x00158d0007f298c2": {
+        "water_leak": false,
+        "tamper": false,
+        "battery_low": false,
+        "voltage": 3115,
+        "battery": 100,
+        "temperature": 30
+    },
+    "0xa4c138b40945050d": {
+        "state": "OFF",
+        "indicator_mode": "off/on",
+        "child_lock": "UNLOCK",
+        "power": 0,
+        "current": 0,
+        "voltage": 218
+    },
+    "0xa4c1384827fe49f1": {
+        "power": 30,
+        "current": 0.28,
+        "voltage": 215,
+        "energy": 0.12,
+        "state": "ON"
+    }
+}

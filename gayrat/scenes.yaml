@@ -1,0 +1,15 @@
+- id: '1645258894124'
+  name: New Scene
+  entities:
+    switch.rozet1:
+      linkquality: 112
+      friendly_name: rozet1
+      state: 'off'
+    script.1:
+      last_triggered: '2022-02-19T08:20:29.309895+00:00'
+      mode: queued
+      current: 0
+      max: 10
+      icon: mdi:caravan
+      friendly_name: кнопка->розетка1
+      state: 'off'

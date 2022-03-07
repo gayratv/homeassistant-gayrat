@@ -1,0 +1,21 @@
+'0xa4c138a1557cca0d':
+  friendly_name: rozet1
+'0xa4c1380ddbcc1601':
+  friendly_name: temp1 кабинет
+'0x8cf681fffee911ee':
+  friendly_name: tuya mini router
+'0x00158d00079b9495':
+  friendly_name: round_btn_xiaomi
+'0xa4c138ebb9cda0a7':
+  friendly_name: motion1
+'0xa4c138adae0f161b':
+  friendly_name: switch.lamp1
+'0x00158d0007ed3750':
+  friendly_name: motion_aquara2
+  occupancy_timeout: 60
+'0x00158d0007f298c2':
+  friendly_name: water_level_1
+'0xa4c138b40945050d':
+  friendly_name: fito.winter.switch1
+'0xa4c1384827fe49f1':
+  friendly_name: kotel switch

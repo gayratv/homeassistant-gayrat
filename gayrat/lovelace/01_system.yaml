@@ -1,0 +1,277 @@
+##################   System
+title: Система
+icon: mdi:home-map-marker
+cards:
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Состояние серверов HA**
+
+        - type: markdown
+          content: >
+               **Основной сервер** 
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.last_boot_custom
+            type: custom:multiple-entity-row
+            name: В онлайне -
+            state_header: Сервер
+            entities:
+              - entity: sensor.online_custom
+                name: Home Assistant
+          - entity: sensor.local_ip
+            name: IP адрес - 
+          - entity: binary_sensor.rpi_power_status
+            name: Питание Raspberry Pi 4 B 4GB - 
+            icon: mdi:power-plug
+          - type: divider
+          - entity: switch.control_mode
+          - type: divider
+          - entity: sensor.hacs
+            type: custom:multiple-entity-row
+            name: Обновления для HACS - 
+            icon: mdi:format-list-numbered
+            state_header: Доступно
+          - type: divider
+          - entity: sensor.current_ha
+            type: custom:multiple-entity-row
+            name: Home Assistant -
+            state_header: Установлен
+            entities:
+              - entity: sensor.version
+                name: Последняя версия
+
+
+        - type: markdown
+          content: >
+               **Резервный сервер и MQTT** 
+               
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.reserve_state
+            name: Raspberry Pi 4 B 2GB в онлайне -
+            icon: mdi:clock-outline
+        #   - entity: sensor.reserve_scenario_group
+        #     name: Бытовые сценарии
+        #     icon: mdi:format-list-numbered
+          - entity: sensor.reserve_live_ping
+          - type: divider
+          - entity: sensor.mqtt_state
+            name: MQTT instanse -
+            icon: mdi:clock-outline
+
+
+        - type: markdown
+          content: >
+               **Испытательный полигон** 
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: sensor.rasp3b_state
+              name: Train Raspberry 3B  -
+              icon: mdi:clock-outline
+            - entity: sensor.test_state
+              name: Test Raspberry 3B + -
+              icon: mdi:clock-outline
+
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Монитор системы**
+             
+        - type: entities
+          show_header_toggle: false
+          state_color: true
+          entities:
+            - entity: sensor.zodiac
+              name: Знак Зодиака
+            - entity: binary_sensor.workday_sensor
+              type: custom:multiple-entity-row
+              icon: mdi:calendar-month
+              name: Календарь -
+              state_header: Рабочий день
+              entities:
+                - entity: sensor.time
+                  name: Время
+                - entity: sensor.date
+                  name: Дата
+
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.processor_use
+             name: Использование процессора
+          color_thresholds:
+            - value: 20
+              color: "#7FFF00"
+            - value: 40
+              color: "#98FB98"
+            - value: 60
+              color: "#FFFF00"
+            - value: 80
+              color: "#FF8C00"
+            - value: 100
+              color: "#DC143C"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.cpu_temp
+             name: Температура процессора
+          color_thresholds:
+            - value: 20
+              color: "#7FFF00"
+            - value: 40
+              color: "#98FB98"
+            - value: 60
+              color: "#FFFF00"
+            - value: 80
+              color: "#FF8C00"
+            - value: 100
+              color: "#DC143C"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+          
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.memory_use_percent
+             name: Использование ОЗУ
+          color_thresholds:
+            - value: 20
+              color: "#7FFF00"
+            - value: 40
+              color: "#98FB98"
+            - value: 60
+              color: "#FFFF00"
+            - value: 80
+              color: "#FF8C00"
+            - value: 100
+              color: "#DC143C"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+            
+
+    - type: vertical-stack
+      cards:
+      
+        - type: markdown
+          style: |
+              ha-card {
+                font-size: 26px;
+              }          
+          content: >
+             **Хранилище, бекап**
+             
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: sensor.last_google_backup_main
+            - entity: sensor.snapshot_backup
+              type: custom:multiple-entity-row
+              name: Snapshots
+              show_state: false
+              entities:
+                - attribute: snapshots_in_google_drive
+                  name: Google Drive
+                - attribute: size_in_google_drive
+                  name: Объем
+                - attribute: snapshots_in_hassio
+                  name: Local Drive
+                - attribute: size_in_home_assistant
+                  name: Объем
+
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.disk_use_percent
+             name: Использование диска
+          color_thresholds:
+            - value: 20
+              color: "#7FFF00"
+            - value: 40
+              color: "#98FB98"
+            - value: 60
+              color: "#FFFF00"
+            - value: 80
+              color: "#FF8C00"
+            - value: 100
+              color: "#DC143C"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+      
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.disk_free
+             name: Свободно на диске
+          color_thresholds:
+            - value: 25
+              color: "#DC143C"
+            - value: 50
+              color: "#FF8C00"
+            - value: 75
+              color: "#FFFF00"
+            - value: 90
+              color: "#98FB98"
+            - value: 110
+              color: "#7FFF00"
+        #   show:
+        #       graph: bar
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
+          
+        - type: custom:mini-graph-card
+          entities:
+           - entity: sensor.maria_db          
+             name: Объем базы Maria DB
+          color_thresholds:
+            - value: 500
+              color: "#7FFF00"
+            - value: 750
+              color: "#98FB98"
+            - value: 1000
+              color: "#FFFF00"
+            - value: 1250
+              color: "#FF8C00"
+            - value: 1500
+              color: "#DC143C"
+          animate: true
+          line_width: 2
+          hour24: true
+          points_per_hour: 1
+          group_by: hour
+          hours_to_show: 72
